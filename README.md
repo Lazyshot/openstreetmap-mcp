@@ -3,26 +3,26 @@
 Give your AI assistant geospatial superpowers! This MCP server provides AI agents (like Claude) with comprehensive location-based capabilities using OpenStreetMap and related open-source services.
 
 [![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io/)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## < What Can It Do?
 
 Your AI assistant can now:
 
-- =Í **Find any location** - Convert addresses to coordinates and vice versa
+- =ï¿½ **Find any location** - Convert addresses to coordinates and vice versa
 - = **Search nearby places** - Find restaurants, hospitals, schools, parks, and more
-- =ú **Calculate routes** - Get directions for driving, cycling, walking, or public transit
-- =Ê **Compare travel options** - See all transportation modes side-by-side
-- <ë **Find schools** - Search for educational institutions with filtering by type
+- =ï¿½ **Calculate routes** - Get directions for driving, cycling, walking, or public transit
+- =ï¿½ **Compare travel options** - See all transportation modes side-by-side
+- <ï¿½ **Find schools** - Search for educational institutions with filtering by type
 
 All results are formatted in clean, easy-to-read markdown optimized for AI consumption.
 
-## ¡ Quick Start
+## ï¿½ Quick Start
 
 ### Prerequisites
 
-- Python 3.11 or higher
+- Python 3.13 or higher
 - [uv](https://github.com/astral-sh/uv) package manager
 - [Claude Desktop](https://claude.ai/download) or any MCP-compatible client
 
@@ -76,7 +76,7 @@ Add this to your Claude Desktop configuration file:
 
 Restart Claude Desktop to load the MCP server. You should see the OpenStreetMap tools available in Claude's tool palette.
 
-## =à Available Tools
+## =ï¿½ Available Tools
 
 ### 1. Geocode - Address to Coordinates
 
@@ -88,7 +88,7 @@ Convert any address to geographic coordinates.
 
 **Returns:**
 ```markdown
-=Í Eiffel Tower, 5, Avenue Anatole France, Paris, France
+=ï¿½ Eiffel Tower, 5, Avenue Anatole France, Paris, France
 Coordinates: 48.8583701, 2.2944813
 Type: tourism / attraction
 ```
@@ -103,7 +103,7 @@ Convert coordinates back to a human-readable address.
 
 **Returns:**
 ```markdown
-=Í New York City Hall, Manhattan, New York, USA
+=ï¿½ New York City Hall, Manhattan, New York, USA
 Country: United States
 City: New York
 Postcode: 10007
@@ -159,7 +159,7 @@ Get directions between two locations with multiple transport modes.
 
 **Returns:**
 ```markdown
-=¶ Walking Route: Eiffel Tower to Louvre Museum
+=ï¿½ Walking Route: Eiffel Tower to Louvre Museum
 
 Summary:
 - Distance: 3.2 km
@@ -183,19 +183,19 @@ Compare all transportation options side-by-side to find the best way to travel.
 
 **Returns:**
 ```markdown
-=Ê Travel Options from Times Square to Central Park
+=ï¿½ Travel Options from Times Square to Central Park
 
 | Mode     | Distance | Duration | Notes              |
 |----------|----------|----------|--------------------|
-| =— Car    | 3.2 km   | 12 min   | Fastest in traffic |
-| =Œ Transit | 3.8 km   | 18 min   | 1 subway line      |
-| =´ Bike   | 3.4 km   | 14 min   | Bike lane available|
-| =¶ Walk   | 3.1 km   | 38 min   | Scenic route       |
+| =ï¿½ Car    | 3.2 km   | 12 min   | Fastest in traffic |
+| =ï¿½ Transit | 3.8 km   | 18 min   | 1 subway line      |
+| =ï¿½ Bike   | 3.4 km   | 14 min   | Bike lane available|
+| =ï¿½ Walk   | 3.1 km   | 38 min   | Scenic route       |
 
-=¡ Recommendation: Transit (fastest with no parking hassle)
+=ï¿½ Recommendation: Transit (fastest with no parking hassle)
 ```
 
-## =¬ Example Conversations
+## =ï¿½ Example Conversations
 
 Here are some real-world examples of how to use the tools:
 
@@ -210,7 +210,7 @@ Claude: [uses geocode tool for "Eiffel Tower, Paris"]
 
         1. Le Jules Verne (250m away)
            Fine dining, Michelin-starred
-        2. Café de l'Homme (180m away)
+        2. Cafï¿½ de l'Homme (180m away)
            French cuisine with Eiffel Tower views
         ...
 ```
@@ -252,7 +252,7 @@ Claude: [uses find_schools_nearby tool]
         - Multiple subway stations nearby
 ```
 
-## =Ë Location Format Guide
+## =ï¿½ Location Format Guide
 
 The tools require different location formats:
 
@@ -265,11 +265,11 @@ The tools require different location formats:
 -  "48.8584,2.2945" (lat,lon)
 -  "40.7128, -74.0060" (spaces are ok)
 - L "2.2945,48.8584" (wrong order - lon,lat)
-- L "48.8584° N, 2.2945° E" (no degree symbols)
+- L "48.8584ï¿½ N, 2.2945ï¿½ E" (no degree symbols)
 
 **Pro tip**: Use the geocode tool first to convert addresses to coordinates, then use those coordinates for search and routing.
 
-## ™ Configuration
+## ï¿½ Configuration
 
 ### Environment Variables
 
@@ -301,7 +301,7 @@ To comply with OpenStreetMap's [Nominatim Usage Policy](https://operations.osmfo
   - POI searches: 1 hour
   - Routes: 5 minutes
 
-## =¨ Troubleshooting
+## =ï¿½ Troubleshooting
 
 ### "No results found"
 
@@ -350,7 +350,7 @@ The Nominatim API has a strict 1 request/second limit. The server enforces this 
 - Intelligent caching for better performance
 - Graceful error handling with helpful messages
 
-###   Current Limitations
+### ï¿½ Current Limitations
 
 - **Transit routing**: Only available in major cities with GTFS data
 - **Real-time traffic**: Not available (routes use average speeds)
@@ -365,7 +365,7 @@ The Nominatim API has a strict 1 request/second limit. The server enforces this 
 - Isochrone calculations (areas reachable in X minutes)
 - POI categories along routes
 
-## <× Architecture
+## <ï¿½ Architecture
 
 This server is built with:
 
@@ -377,7 +377,7 @@ This server is built with:
 
 All external services used are free and open-source.
 
-## =Ú Additional Resources
+## =ï¿½ Additional Resources
 
 - [MCP Protocol Documentation](https://modelcontextprotocol.io/)
 - [OpenStreetMap Wiki](https://wiki.openstreetmap.org/)
@@ -389,7 +389,7 @@ All external services used are free and open-source.
 
 Contributions are welcome! See [CLAUDE.md](CLAUDE.md) for developer documentation.
 
-## =Ä License
+## =ï¿½ License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 

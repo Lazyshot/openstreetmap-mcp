@@ -1,5 +1,5 @@
 # Multi-stage build for minimal image size
-FROM python:3.11-slim as builder
+FROM python:3.13-slim as builder
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
@@ -14,7 +14,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev
 
 # Final stage
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \

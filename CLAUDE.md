@@ -14,7 +14,7 @@ This is an MCP (Model Context Protocol) server that provides AI agents with geos
 ## Architecture Quick Reference
 
 - **Framework:** FastMCP with stdio transport (standard MCP)
-- **Language:** Python 3.11+
+- **Language:** Python 3.13+
 - **Package Manager:** uv
 - **Deployment:** Stateless design (horizontally scalable)
 - **Caching:** In-memory TTL cache with thread safety

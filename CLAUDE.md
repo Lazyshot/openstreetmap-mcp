@@ -13,10 +13,11 @@ This is an MCP (Model Context Protocol) server that provides AI agents with geos
 
 ## Architecture Quick Reference
 
-- **Framework:** FastMCP with stdio transport (standard MCP)
+- **Framework:** FastMCP with configurable transport (stdio or HTTP streamable)
 - **Language:** Python 3.13+
 - **Package Manager:** uv
 - **Deployment:** Stateless design (horizontally scalable)
+- **Transport:** STDIO for local CLI usage, HTTP for remote/web deployments
 - **Caching:** In-memory TTL cache with thread safety
 - **External APIs:** Nominatim, Overpass, OSRM, Transit.land (all public, no auth)
 - **Output:** Markdown formatted for LLM parsing
@@ -195,7 +196,11 @@ OSRM_URL=https://router.project-osrm.org
 TRANSITLAND_URL=https://transit.land/api/v2
 
 # Server Configuration
-PORT=8000
+# Transport: stdio (for local CLI) or http (for remote/web deployments)
+TRANSPORT=stdio
+HOST=127.0.0.1    # HTTP transport only
+PORT=8000         # HTTP transport only
+MCP_PATH=/mcp     # HTTP transport only
 LOG_LEVEL=INFO
 
 # Required by OSM services
@@ -214,14 +219,20 @@ Configuration is managed by `src/config.py` using pydantic-settings:
 # Install dependencies
 uv sync
 
-# Run MCP server (stdio mode)
+# Run MCP server (stdio mode - default)
 uv run python main.py
 
+# Run MCP server (HTTP mode for remote access)
+TRANSPORT=http uv run python main.py
+# Or set TRANSPORT=http in .env file
+
 # Or install and use with Claude Desktop
-# Add to Claude Desktop MCP configuration
+# Add to Claude Desktop MCP configuration (see below)
 ```
 
 ### MCP Configuration
+
+#### STDIO Transport (Local Claude Desktop)
 
 Add to Claude Desktop's `claude_desktop_config.json`:
 
@@ -238,6 +249,38 @@ Add to Claude Desktop's `claude_desktop_config.json`:
   }
 }
 ```
+
+#### HTTP Streamable Transport (Remote Deployment)
+
+For remote deployments, web services, or multi-client scenarios:
+
+1. **Set environment variables:**
+```bash
+export TRANSPORT=http
+export HOST=0.0.0.0  # or specific IP
+export PORT=8000
+export MCP_PATH=/mcp
+```
+
+2. **Run the server:**
+```bash
+uv run python main.py
+```
+
+3. **Connect MCP clients to:** `http://your-server:8000/mcp`
+
+**Benefits of HTTP Transport:**
+- Remote access from multiple clients
+- Web-based deployments (Cloud Run, Railway, Fly.io, etc.)
+- Horizontal scaling with load balancers
+- No local process management required
+- Streamable bidirectional communication
+
+**Security Note:** When deploying HTTP transport publicly, consider:
+- Using HTTPS/TLS termination (e.g., via reverse proxy)
+- Authentication/authorization middleware
+- Rate limiting per client
+- Network firewalls and security groups
 
 ## Important Notes
 

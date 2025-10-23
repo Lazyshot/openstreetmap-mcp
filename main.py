@@ -3,7 +3,7 @@
 import signal
 import sys
 
-from src.config import settings
+from src.config import settings, TransportType
 from src.logging_config import setup_logging, get_logger
 from src.server import mcp
 
@@ -27,16 +27,31 @@ def main():
     logger.info(
         "Starting OpenStreetMap MCP server",
         extra={
-            "port": settings.port,
+            "transport": settings.transport.value,
+            "host": settings.host if settings.transport == TransportType.HTTP else "N/A",
+            "port": settings.port if settings.transport == TransportType.HTTP else "N/A",
+            "path": settings.mcp_path if settings.transport == TransportType.HTTP else "N/A",
             "nominatim_url": settings.nominatim_url,
             "log_level": settings.log_level,
         },
     )
 
-    # Run the FastMCP server
-    mcp.run(
-        transport="stdio",  # MCP protocol uses stdio by default
-    )
+    # Run the FastMCP server with configured transport
+    if settings.transport == TransportType.HTTP:
+        logger.info(
+            f"Starting HTTP streamable transport on {settings.host}:{settings.port}{settings.mcp_path}"
+        )
+        mcp.run(
+            transport="http",
+            host=settings.host,
+            port=settings.port,
+            path=settings.mcp_path,
+        )
+    else:
+        logger.info("Starting stdio transport")
+        mcp.run(
+            transport="stdio",
+        )
 
 
 if __name__ == "__main__":

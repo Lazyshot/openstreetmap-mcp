@@ -17,6 +17,13 @@ class LogLevel(str, Enum):
     CRITICAL = "CRITICAL"
 
 
+class TransportType(str, Enum):
+    """Valid MCP transport types."""
+
+    STDIO = "stdio"
+    HTTP = "http"
+
+
 class CacheTTL:
     """Cache Time-To-Live constants in seconds."""
 
@@ -60,9 +67,22 @@ class Settings(BaseSettings):
     )
 
     # Server Configuration
+    transport: TransportType = Field(
+        default=TransportType.STDIO,
+        description="MCP transport type (stdio for local, http for remote)",
+    )
+    host: str = Field(
+        default="127.0.0.1",
+        description="Host address for HTTP transport",
+    )
     port: Annotated[int, Field(ge=1, le=65535)] = Field(
         default=8000,
         description="Server port number (1-65535)",
+    )
+    mcp_path: str = Field(
+        default="/mcp",
+        description="HTTP endpoint path for streamable transport",
+        alias="MCP_PATH",
     )
     log_level: LogLevel = Field(
         default=LogLevel.INFO,
@@ -123,4 +143,4 @@ except Exception as e:
     raise RuntimeError(f"Configuration validation failed: {e}") from e
 
 
-__all__ = ["settings", "Settings", "CacheTTL", "RateLimits", "LogLevel"]
+__all__ = ["settings", "Settings", "CacheTTL", "RateLimits", "LogLevel", "TransportType"]

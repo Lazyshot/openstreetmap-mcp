@@ -1,6 +1,6 @@
 [project]
 name = "openstreetmap-mcp"
-version = "0.1.2"
+version = "0.2.0"
 description = "MCP server providing geospatial awareness capabilities using OpenStreetMap"
 readme = "README.md"
 requires-python = ">=3.13"

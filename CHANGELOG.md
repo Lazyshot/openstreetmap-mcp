@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/Lazyshot/openstreetmap-mcp/compare/v0.1.2...v0.2.0) (2025-10-23)
+
+
+### Features
+
+* add HTTP Streamable transport support ([16d82c0](https://github.com/Lazyshot/openstreetmap-mcp/commit/16d82c0572f6dd07f20f593e5a718f32cfcd05df))
+* add HTTP Streamable transport support ([fb810c2](https://github.com/Lazyshot/openstreetmap-mcp/commit/fb810c24918a7b302438707ec8505395c0695d39))
+
 ## [0.1.2](https://github.com/Lazyshot/openstreetmap-mcp/compare/v0.1.1...v0.1.2) (2025-10-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/Lazyshot/openstreetmap-mcp/compare/v0.1.1...v0.1.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* **ci:** remove invalid SHA-based Docker tag format ([68de3bc](https://github.com/Lazyshot/openstreetmap-mcp/commit/68de3bc6a60d3ae7ef510c8a5d3304de7ad03cc5))
+
 ## [0.1.1](https://github.com/Lazyshot/openstreetmap-mcp/compare/v0.1.0...v0.1.1) (2025-10-23)
 
 
